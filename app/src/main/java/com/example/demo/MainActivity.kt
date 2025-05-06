@@ -184,15 +184,15 @@ class HandwritingRecognizer(context: Context) {
 
 fun preprocessImage(file: File): FloatArray {
     val bitmap = BitmapFactory.decodeFile(file.absolutePath)
-    val resizedBitmap = bitmap.scale(28, 28) // Resize to model input size
+    val resizedBitmap = bitmap.scale(28, 28) 
     val floatArray = FloatArray(28 * 28)
     for (y in 0 until 28) {
         for (x in 0 until 28) {
             val pixel = resizedBitmap[x, y]
             val grayscale = (android.graphics.Color.red(pixel) +
                     android.graphics.Color.green(pixel) +
-                    android.graphics.Color.blue(pixel)) / 3f // Convert to grayscale
-            floatArray[y * 28 + x] = grayscale / 255f // Normalize to 0-1
+                    android.graphics.Color.blue(pixel)) / 3f 
+            floatArray[y * 28 + x] = grayscale / 255f 
         }
     }
     return floatArray
